@@ -2,61 +2,108 @@ package test;
 
 import java.util.Scanner;
 
-public class È¸¿ø°¡ÀÔ·Î±×ÀÎÇÁ·Î±×·¥ {
-	public static void main (String[] args) {
-		
-		String[] ids = new String[100]; 
-		String[] pws = new String[100]; 
-		int count=0;//ÀÎ¿ø¼ö
-		
-		//1.È¸¿ø°¡ÀÔ
-		//2.·Î±×ÀÎ
-		//3.ÇÁ·Î±×·¥Á¾·á
-		
+public class íšŒì›ê°€ì…ë¡œê·¸ì¸í”„ë¡œê·¸ë¨ {
+	public static void main(String[] args) {
+
+		String[] ids = new String[100];
+		String[] pws = new String[100];
+		int count = 0;// ì¸ì›ìˆ˜
+
+		// 1.íšŒì›ê°€ì…
+		// 2.ë¡œê·¸ì¸
+		// 3.í”„ë¡œê·¸ë¨ì¢…ë£Œ
+
 		do {
-			System.out.println("1:È¸¿ø°¡ÀÔ");
-			System.out.println("2:·Î±×ÀÎ");
-			System.out.println("3:ÇÁ·Î±×·¥ Á¾·á");
-			
-			System.out.print("¿øÇÏ´Â ¸Ş´ºÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			System.out.println("1:íšŒì›ê°€ì…");
+			System.out.println("2:ë¡œê·¸ì¸");
+			System.out.println("3:í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
+
+			System.out.print("ì›í•˜ëŠ” ë©”ë‰´ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			Scanner sc = new Scanner(System.in);
 			int manuint = sc.nextInt();
-			
-			switch(manuint) {
-			
-			case 1: count=signup(ids, pws, count); break;
-			case 2: login(ids, pws); break;
-			case 3: System.out.println("½Ã½ºÅÛÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
-			return;
+
+			switch (manuint) {
+
+			case 1:
+				count = signup(ids, pws, count);
+				break;
+			case 2:
+				login(ids, pws, count);
+				break;
+			case 3:
+				System.out.println("ì‹œìŠ¤í…œì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				return;
 			}
-			
-			
-		}while (true);
+
+		} while (true);
 	}
 
-	private static void login(String[] ids, String[] pws) {
+	private static void login(String[] ids, String[] pws, int count) {
 		// TODO Auto-generated method stub
-		System.out.println("·Î±×ÀÏ ÇÏ½Ç ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.println("ë¡œê·¸ì¸ í•˜ì‹¤ ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		Scanner sc1 = new Scanner(System.in);
 		String signupid = sc1.next();
-		System.out.println("·Î±×ÀÎ ÇÏ½Ç ¾ÆÀÌµğÀÇ ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.println("ë¡œê·¸ì¸ í•˜ì‹¤ ì•„ì´ë””ì˜ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		Scanner sc2 = new Scanner(System.in);
+		String signuppw = sc2.next();
+
+		signupid = signupid.trim();
+		signuppw = signuppw.trim();
+
+//		for(int idx=0;idx<3;idx++) {
+//			System.out.println(ids[idx]);
+//		}
+//		System.out.println(ids[idx]);
+//		idx++;
+//		System.out.println(ids[idx]);
+//		idx++;
+
+		int flag_result = 0;
+
+		for (int i = 0; i < count; i++) {
+
+			if (ids[i].equals(signupid)) {
+				if (pws[i].equals(signuppw)) {
+					flag_result = 1;
+				} else
+					flag_result = 2;
+			}
+			if (!ids[i].equals(signupid)) {
+				flag_result = 0;
+			}
+
+		}
+
+		if (flag_result == 0) {
+			System.out.println("ì•„ì´ë””ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		} else if (flag_result == 1) {
+			System.out.println("ì•„ì´ë”” íŒ¨ìŠ¤ì›Œë“œ ëª¨ë‘ ì¼ì¹˜í•©ë‹ˆë‹¤.");
+		} else if (flag_result == 2) {
+			System.out.println("íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		}
+
 	}
 
 	private static int signup(String[] ids, String[] pws, int count) {
 		// TODO Auto-generated method stub
-		System.out.println("°¡ÀÔÇÏ½Ç ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.println("ê°€ì…í•˜ì‹¤ ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		Scanner sc1 = new Scanner(System.in);
 		String signupid = sc1.next();
-		System.out.println("°¡ÀÔÇÏ½Ç ¾ÆÀÌµğÀÇ ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.println("ê°€ì…í•˜ì‹¤ ì•„ì´ë””ì˜ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		Scanner sc2 = new Scanner(System.in);
 		String signuppw = sc2.next();
-		
-		signupid=signupid.trim();
-		signuppw=signuppw.trim();
-		
+
+		signupid = signupid.trim();
+		signuppw = signuppw.trim();
+
+		ids[count] = signupid;
+		pws[count] = signuppw;
+
 		count++;
-		return 0;
+
+		System.out.println("íšŒì›ê°€ì… ë˜ì—ˆìŠµë‹ˆë‹¤");
+
+		return count;
 	}
 
 }

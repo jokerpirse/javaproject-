@@ -10,7 +10,7 @@ public class homeworkcode4 {
     }
 
     public static void main(String[] args) {
-        String menus[2] = {
+        String menus[] = {
             getMenu("아메리카노"),
             getMenu("라떼", 50)
         };

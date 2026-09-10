@@ -2,6 +2,8 @@ package test;
 
 import java.util.Scanner;
 
+import 장제하.p142_SeatReservation;
+
 public class 회원가입로그인프로그램 {
 	public static void main(String[] args) {
 
@@ -60,24 +62,30 @@ public class 회원가입로그인프로그램 {
 
 		int flag_result = 0;
 
-			for (int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 
 			if (ids[i].equals(signupid)) {
 
 				if (pws[i].equals(signuppw)) {
 					flag_result = 1;
-				} else {
-					flag_result = 2;
+					
 				}
-
+				else
+				{
+					flag_result = 2;
+					
+				}
 				break;
-			}
+			} 
+		
+	
 		}
 
 		if (flag_result == 0) {
 			System.out.println("아이디가 일치하지 않습니다.");
 		} else if (flag_result == 1) {
 			System.out.println("아이디 패스워드 모두 일치합니다.");
+			p142_SeatReservation.main(null);
 		} else if (flag_result == 2) {
 			System.out.println("패스워드가 일치하지 않습니다.");
 		}

@@ -60,18 +60,18 @@ public class 회원가입로그인프로그램 {
 
 		int flag_result = 0;
 
-		for (int i = 0; i < count; i++) {
+			for (int i = 0; i < count; i++) {
 
 			if (ids[i].equals(signupid)) {
+
 				if (pws[i].equals(signuppw)) {
 					flag_result = 1;
-				} else
+				} else {
 					flag_result = 2;
-			}
-			if (!ids[i].equals(signupid)) {
-				flag_result = 0;
-			}
+				}
 
+				break;
+			}
 		}
 
 		if (flag_result == 0) {

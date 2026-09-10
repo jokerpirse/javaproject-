@@ -1,1 +1,20 @@
 
+public class MyFunc {
+    public static String getMenu(String name) {
+        return name;
+    }
+
+    public static String getMenu(String name, int ml) {
+        return name + " (우유 " + ml + "ml)";
+    }
+
+    public static void main(String[] args) {
+        String menus[2] = {
+            getMenu("아메리카노"),
+            getMenu("라떼", 50)
+        };
+
+        for (int i = 0; i < 2; i++)
+            System.out.println(menus[i]);
+    }
+}

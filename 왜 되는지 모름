@@ -1,0 +1,94 @@
+package 장제하; //ai에게 웹으로 디자인하고 그걸 넣어서 코드로 뽑는 것이 좋다
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class p166_RegularExpression {
+
+	private static String getString(String s1, String s2, String s3) {
+		String input;
+		Pattern pattern;
+		Matcher m;
+		do {
+		System.out.println(s1);
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextLine();
+
+		pattern = Pattern.compile(s2);
+		m = pattern.matcher(input);
+		
+		if (!m.matches()) {
+			System.out.println(s3);
+			input= null;
+		}
+		}
+		while(input==null);
+		return input;
+
+	}
+
+	public static void main(String[] args) {
+		String name = getString("이름 : ", "^[가-힣]{2,4}$", "이름 형식에 맞지 않습니다.");
+
+		String adress = getString("주소 : ", "^[가-힣]{2,4}도\\s+[가-힣]{2,4}시\\s+[가-힣]{2,6}로\\s+\\d{2,4}$",
+				"주소 형식에 맞지 않습니다.");
+
+		String postnumber = getString("우편번호 : ", "^\\d{5}$", "우편번호 형식에 맞지 않습니다.");
+
+		String phonenumber = getString("핸드폰번호 : ", "^01[01]-\\d{4}-\\d{4}$", "핸드폰 번호 형식에 맞지 않습니다.");
+
+//        Scanner sc = new Scanner(System.in);
+
+//        String input;
+//        Pattern pattern;
+//        Matcher m;
+//
+//        System.out.println("이름 : ");
+//        input = sc.next();
+//        pattern = Pattern.compile("^[가-힣]{2,4}$");
+//        m = pattern.matcher(input);
+//
+//        if (!m.matches()) {
+//            System.out.println("이름 형식에 맞지 않습니다.");
+//            return;
+//        }
+//
+//        input = sc.nextLine();
+//        System.out.println("주소 : ");
+//        input = sc.nextLine();
+//        pattern = Pattern.compile("^[가-힣]{2,4}도\\s+[가-힣]{2,4}시\\s+[가-힣]{2,6}로\\s+\\d{2,4}$");
+//        m = pattern.matcher(input);
+//
+//        if (!m.matches()) {
+//            System.out.println("주소 형식에 맞지 않습니다.");
+//            return;
+//        }
+//
+//        System.out.println("우편번호 : ");
+//        input = sc.next();
+//        pattern = Pattern.compile("^\\d{5}$");
+//        m = pattern.matcher(input);
+//
+//        if (!m.matches()) {
+//            System.out.println("우편번호 형식에 맞지 않습니다.");
+//            return;
+//        }
+//
+//        System.out.println("핸드폰번호 : ");
+//        input = sc.next();
+//        pattern = Pattern.compile("^01[01]-\\d{4}-\\d{4}$");
+//        m = pattern.matcher(input);
+//        if (!m.matches()) {
+//            System.out.println("핸드폰 번호 형식에 맞지 않습니다.");
+//        return;
+//        }
+
+//		System.out.println("모든 자료를 형식에 맞게 입력하셨습니다.");
+		System.out.println("이름 : " + name);
+		System.out.println("주소 : " + adress);
+		System.out.println("우편번호 : " + postnumber);
+		System.out.println("핸드폰 번호 : " + phonenumber);
+	}
+
+}

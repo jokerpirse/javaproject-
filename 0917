@@ -1,0 +1,135 @@
+private static String getString(String input, String regex, String errorMsg) {
+
+    Pattern pattern = Pattern.compile(regex);
+    Matcher m = pattern.matcher(input);
+
+    if (!m.matches()) {
+        System.out.println(errorMsg);
+        return null;
+    }
+
+    return input;
+}
+
+public static void main(String[] args) {
+
+    Scanner sc = new Scanner(System.in);
+
+    System.out.print("이름 : ");
+    String input = sc.nextLine();
+
+    String name = getString(
+        input,
+        "^[가-힣]{2,4}$",
+        "이름 형식에 맞지 않습니다."
+    );
+
+    if (name == null) {
+        return;
+    }
+
+    System.out.print("주소 : ");
+    input = sc.nextLine();
+
+    String address = getString(
+        input,
+        "^[가-힣]{2,4}도\\s+[가-힣]{2,4}시\\s+[가-힣]{2,6}로\\s+\\d{2,4}$",
+        "주소 형식에 맞지 않습니다."
+    );
+
+    if (address == null) {
+        return;
+    }
+
+    System.out.print("우편번호 : ");
+    input = sc.nextLine();
+
+    String postnumber = getString(
+        input,
+        "^\\d{5}$",
+        "우편번호 형식에 맞지 않습니다."
+    );
+
+    if (postnumber == null) {
+        return;
+    }
+
+    System.out.println("모든 자료를 형식에 맞게 입력하셨습니다.");
+    System.out.println("이름 : " + name);
+    System.out.println("주소 : " + address);
+    System.out.println("우편번호 : " + postnumber);
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+private static String getString(String input, String regex, String msg) {
+
+    Pattern pattern = Pattern.compile(regex);
+    Matcher m = pattern.matcher(input);
+
+    if (!m.matches()) {
+        System.out.println(msg);
+        return null;
+    }
+
+    return input;
+}
+
+public static void main(String[] args) {
+
+    Scanner sc = new Scanner(System.in);
+
+    System.out.print("이름 : ");
+    String input = sc.nextLine();
+
+    String name = getString(
+        input,
+        "^[가-힣]{2,4}$",
+        "이름 형식에 맞지 않습니다."
+    );
+
+    if (name == null) {
+        return;
+    }
+
+    System.out.print("주소 : ");
+    input = sc.nextLine();
+
+    String address = getString(
+        input,
+        "^[가-힣]{2,4}도\\s+[가-힣]{2,4}시\\s+[가-힣]{2,6}로\\s+\\d{2,4}$",
+        "주소 형식에 맞지 않습니다."
+    );
+
+    if (address == null) {
+        return;
+    }
+
+    System.out.print("우편번호 : ");
+    input = sc.nextLine();
+
+    String postnumber = getString(
+        input,
+        "^\\d{5}$",
+        "우편번호 형식에 맞지 않습니다."
+    );
+
+    if (postnumber == null) {
+        return;
+    }
+
+    System.out.println("모든 자료를 형식에 맞게 입력하셨습니다.");
+    System.out.println("이름 : " + name);
+    System.out.println("주소 : " + address);
+    System.out.println("우편번호 : " + postnumber);
+}
+
+
+
+

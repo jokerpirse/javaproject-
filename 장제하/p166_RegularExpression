@@ -10,10 +10,10 @@ public class p166_RegularExpression {
 		// TODO Auto-generated method stub
 		
 		if (!m.matches()) {
-          System.out.println(s3);
-          return;
+          System.out.println(s2 + "형식에 맞지 않습니다.");
+          return null;
      }
-		return null;
+		return input;
 	}
     public static void main(String[] args) {
     	String name = getString("이름 : ", "^[가-힣]{2,4}$", "이름 형식에 맞지 않습니다.");

@@ -1,0 +1,104 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+
+        // 용사 능력치
+        int heroHp = 30;
+        int heroAttack = 30;
+        int heroDefense = 30;
+
+        // 몬스터 정보
+        String[] monsterName = {"미믹", "듀라한", "데스나이트"};
+        int[] monsterHp = {30, 50, 80};
+        int[] monsterAttack = {35, 45, 60};
+        int[] monsterDefense = {10, 20, 30};
+
+        System.out.println("몬스터가 나타났다! 누가 나왔을까?");
+        System.out.println("1. 미믹  2. 듀라한  3. 데스나이트");
+
+        int monster = random.nextInt(3);
+
+        System.out.println(">> " + (monster + 1));
+        System.out.println(monsterName[monster] + " 이(가) 나타났다!");
+
+        while (heroHp > 0 && monsterHp[monster] > 0) {
+
+            System.out.println();
+            System.out.println("1. 싸운다  2. 도망간다");
+            System.out.print(">> ");
+            int choice = sc.nextInt();
+
+            if (choice == 2) {
+                System.out.println("용사가 도망갔다!");
+                break;
+            }
+
+            if (choice != 1) {
+                System.out.println("잘못 입력했습니다.");
+                continue;
+            }
+
+            // 용사 공격
+            System.out.println();
+            System.out.println("용사의 공격!");
+
+            int damage = heroAttack - monsterDefense[monster];
+
+            // 공격력이 방어력 이하이면 데미지 0
+            if (damage < 0) {
+                damage = 0;
+            }
+
+            monsterHp[monster] -= damage;
+
+            if (monsterHp[monster] < 0) {
+                monsterHp[monster] = 0;
+            }
+
+            System.out.println("데미지 " + damage + "!");
+            System.out.println("남은 " + monsterName[monster]
+                    + "의 체력 : " + monsterHp[monster]);
+
+            // 몬스터 사망
+            if (monsterHp[monster] <= 0) {
+                System.out.println();
+                System.out.println(monsterName[monster] + "을(를) 쓰러뜨렸다!");
+                System.out.println("용사의 승리!");
+                break;
+            }
+
+            // 몬스터 반격
+            System.out.println();
+            System.out.println(monsterName[monster] + "의 반격!");
+
+            damage = monsterAttack[monster] - heroDefense;
+
+            if (damage < 0) {
+                damage = 0;
+            }
+
+            heroHp -= damage;
+
+            if (heroHp < 0) {
+                heroHp = 0;
+            }
+
+            System.out.println("데미지 " + damage + "!");
+            System.out.println("용사 체력 : " + heroHp);
+
+            // 용사 사망
+            if (heroHp <= 0) {
+                System.out.println();
+                System.out.println("용사가 쓰러졌다...");
+                System.out.println("게임 오버!");
+                break;
+            }
+        }
+
+        sc.close();
+    }
+}

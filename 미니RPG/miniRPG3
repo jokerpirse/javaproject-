@@ -1,0 +1,179 @@
+package 미니RPG;
+
+import java.util.Scanner;
+
+public class miniRPG3 {
+	public static void main(String[] args) {
+
+		용사 himmal = new 용사();
+
+		himmal.Atk = 20;
+		himmal.Def = 15;
+		himmal.Hp = 30;
+		himmal.Gold = 0;
+
+		System.out.println("용사여 당신의 이름을 알려주세요!");
+		Scanner sc = new Scanner(System.in);
+		himmal.name = sc.nextLine();
+		System.out.println("환영합니다, " + himmal.name + "님!");
+
+		Monster[] 괴물 = new Monster[4];
+
+		괴물[0] = new Monster("미믹",15,10,10,7);
+//		괴물[0].setInfo("미믹",15,10,10,7);
+//		괴물[0].setName("미믹");
+//		괴물[0].setAtk(10);
+//		괴물[0].setDef(7);
+//		괴물[0].setHp(15);
+//		괴물[0].setGold(10);
+
+		괴물[1] = new Monster("듀라한",25,20,25,5);
+//		괴물[1].setInfo("듀라한",25,20,25,5);
+//		괴물[1].setName("듀라한");
+//		괴물[1].setAtk(25);
+//		괴물[1].setDef(5);
+//		괴물[1].setHp(25);
+//		괴물[1].setGold(20);
+
+		괴물[2] = new Monster("데스나이트",10,15,20,18);
+//      괴물[2].setInfo("데스나이트",10,15,20,18);
+//		괴물[2].setName("데스나이트");
+//		괴물[2].setAtk(20);
+//		괴물[2].setDef(18);
+//		괴물[2].setHp(10);
+//		괴물[2].setGold(25);
+		
+		괴물[3] = new Monster("듀오링고",16,16,16,16);
+		//괴물[3].setInfo("듀오링고",15,15,15,15);
+
+		System.out.println("몬스터가 나타났다! 누가 나왔을까?");
+		System.out.println("1.미믹 2.듀라한 3.데스나이트 4.듀오링고");
+		Scanner sc1 = new Scanner(System.in);
+
+		int choice1 = sc1.nextInt();
+
+		if (choice1 > 4 || choice1 < 1) {
+			System.out.println("잘못 입력했습니다.");
+			return;
+		}
+
+		Monster now괴물 = 괴물[choice1 - 1];
+
+		System.out.println(now괴물.getName() + "이(가) 나타났다!");
+
+		int 준데미지 = himmal.Atk - now괴물.getDef();
+		if (준데미지 < 0)
+			준데미지 = 0;
+		int 받은데미지 = now괴물.getAtk() - himmal.Def;
+		if (받은데미지 < 0)
+			받은데미지 = 0;
+		String monstername = now괴물.getName();
+
+		while (himmal.Hp > 0 && now괴물.getHp() > 0) {
+
+			System.out.println();
+			System.out.println("1. 싸운다  2. 도망간다");
+			System.out.print(">> ");
+			int choice2 = sc.nextInt();
+
+			if (choice2 == 1) {
+				System.out.println("용사의 공격!");
+				System.out.println(준데미지 + "의 데미지 발생!");
+				now괴물.setHp(now괴물.getHp() - 준데미지); // 값이 변할 때는 set을 써야 한다.
+				if (괴물[choice1 - 1].getHp() <= 0) {
+					System.out.println("남은 " + monstername + "의 체력 : 0");
+					break;
+				}
+				System.out.println("남은 " + monstername + "의 체력 : " + now괴물.getHp());
+				System.out.println(monstername + "의 공격!");
+				System.out.println(받은데미지 + "의 데미지 발생!");
+				himmal.Hp -= 받은데미지;
+				System.out.println("용사의 체력 : " + himmal.Hp);
+			}
+
+			else if (choice2 == 2) {
+				System.out.println("용사가 도망갔다!");
+				break;
+			}
+
+			else {
+				System.out.println("잘못 입력했습니다.");
+				continue;
+			}
+
+		}
+		if (괴물[choice1 - 1].getHp() <= 0) {
+			System.out.println("승리!");
+			System.out.println(now괴물.getGold() + "의 골드를 획득했다!");
+			himmal.Gold = himmal.Gold + now괴물.getGold();
+		}
+	}
+
+}
+
+class Monster {
+	private String Name;
+	private int Hp, Gold, Atk, Def;
+	
+	public Monster() {}
+	
+	public Monster(String name, int hp, int gold, int atk, int def) {
+		Name = name;
+		Hp = hp;
+		Gold = gold;
+		Atk = atk;
+		Def = def;
+	}
+
+
+	void setInfo(String Name, int Hp, int Gold, int Atk,int Def) {
+		this.Name=Name; this.Hp=Hp; this.Gold=Gold; this.Atk=Atk; this.Def=Def;
+	}
+	
+	
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public int getHp() {
+		return Hp;
+	}
+
+	public void setHp(int hp) {
+		Hp = hp;
+	}
+
+	public int getGold() {
+		return Gold;
+	}
+
+	public void setGold(int gold) {
+		Gold = gold;
+	}
+
+	public int getAtk() {
+		return Atk;
+	}
+
+	public void setAtk(int atk) {
+		Atk = atk;
+	}
+
+	public int getDef() {
+		return Def;
+	}
+
+	public void setDef(int def) {
+		Def = def;
+	}
+
+}
+
+class 용사 {
+	String name;
+	int Hp, Gold, Atk, Def;
+}

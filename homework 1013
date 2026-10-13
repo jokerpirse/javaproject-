@@ -1,0 +1,75 @@
+
+class SharedData {
+    private static int count = 0;
+    public final static int MaxSize = 100;
+    private static int[] buffer = new int[MaxSize];
+
+    public static int getVal() {
+        if (count != 0) return buffer[--count];
+        else return -1;
+    }
+
+    public static int setVal(int s) {
+        if (count != MaxSize) {
+            buffer[count++] = s;
+            return count;
+        }
+        else return -1;
+    }
+}
+
+
+
+class Producer {
+    private Random generator = new Random();
+
+    public void produce() {
+        int loop = generator.nextInt(4) + 2;
+        int res, val;
+
+        for(int i=0; i<loop; i++) {
+            val = generator.nextInt(101);
+            res = SharedData.setVal(val);
+
+            if (res < 0)
+                System.out.println("write : 버퍼가 꽉 차 더 이상을 추가할 수 없습니다.");
+            else
+                System.out.println("write : " + val);
+        }
+    }
+}
+
+
+class Consumer {
+    private Random generator = new Random();
+
+    public void consume() {
+        int loop = generator.nextInt(4) + 2;
+        int res;
+
+        for(int i=0; i<loop; i++) {
+            res = SharedData.getVal();
+
+            if (res < 0)
+                System.out.println("read : 데이터가 없습니다.");
+            else
+                System.out.println("read : " + res);
+        }
+    }
+}
+
+
+
+public class SharedDataTest {
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Consumer c = new Consumer();
+        Producer p = new Producer();
+
+        for(int i=0; i < 3; i++) {
+            p.produce();
+            c.consume();
+        }
+    }
+}
+

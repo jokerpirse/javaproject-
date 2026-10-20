@@ -3,6 +3,7 @@ package 장제하;
 import java.util.Scanner;
 
 class 구단{
+	String name;
 	//String 코치;
 }
 //
@@ -57,7 +58,7 @@ public class soccer {
 		String name = sc1.nextLine();
 		System.out.println(">구단이 생성되었습니다.");
 		
-		
+		teams[teamcount].name=name; //.name 필수???
 		
 		teamcount++;
 		

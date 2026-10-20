@@ -101,7 +101,7 @@ public class 회원가입로그인프로그램 {
 		Scanner sc2 = new Scanner(System.in);
 		String signuppw = sc2.next();
 
-		signupid = signupid.trim();
+		signupid = signupid.trim(); //공백을 없애는 행위
 		signuppw = signuppw.trim();
 
 		ids[count] = signupid;

@@ -95,18 +95,15 @@ public class soccer {
 
 	public void EditTeam() {
 		System.out.println("<<구단편집>>");
-		int EditCount=1;
 			for (int t=0; t<teamcount ;t++) {
-				System.out.println(EditCount+". ");
-				EditCount++;
+				System.out.println((t+1)+". ");
 			}
-		System.out.println(EditCount+++". 나가기");
+		System.out.println((teamcount+1)+". 나가기");
 		
-		int EndCount=EditCount;
 		Scanner sc2 = new Scanner(System.in);
-		int strname = sc2.nextInt();
+		int num = sc2.nextInt();
 		
-		if(sc2==EndCount) return;
+		if(num==teamcount+1) return;
 	}
 
 	public void DelTeam() {

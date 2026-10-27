@@ -1,0 +1,92 @@
+
+public void EditTeam() {
+
+    Scanner sc2 = new Scanner(System.in);
+
+    // 구단별 코치 저장
+    String[][] coaches = new String[100][100];
+    int[] coachcount = new int[100];
+
+            System.out.println("<<구단 편집>>");
+
+            System.out.println((teamcount+1) + ". 나가기");
+            System.out.print("편집할 구단 입력 : ");
+
+            int num = sc2.nextInt();
+
+
+            int teamnum = num-1;
+
+            while(true) {
+
+                teams[teamnum].EditTeam();
+
+                System.out.println("1. 코치 추가");
+                System.out.println("2. 선수 추가");
+                System.out.println("3. 코치 삭제");
+                System.out.println("4. 선수 삭제");
+                System.out.println("5. 나가기");
+                System.out.print("입력 : ");
+
+                int input = sc2.nextInt();
+
+                switch(input) {
+
+                case 1:
+                    System.out.print("코치 이름을 입력해주세요 : ");
+                    String name = sc2.next();
+
+                    coaches[teamnum][coachcount[teamnum]] = name;
+                    coachcount[teamnum]++;
+
+                    System.out.println(">" + name
+                            + "이 출력되었습니다.");
+                    break;
+
+                case 2:
+                    // 선수 추가
+                    break;
+
+                case 3:
+                    System.out.println("<<코치 삭제>>");
+
+
+                    for(int i=0; i<coachcount[teamnum]; i++) {
+                        System.out.println((i+1) + ". "
+                                + coaches[teamnum][i]);
+                    }
+
+                    System.out.print("삭제할 코치 입력 : ");
+                    int del = sc2.nextInt();
+
+                    String delname = coaches[teamnum][del-1];
+
+                    for(int i=del-1; i<coachcount[teamnum]-1; i++) {
+                        coaches[teamnum][i] =
+                                coaches[teamnum][i+1];
+                    }
+
+                    coachcount[teamnum]--;
+                    coaches[teamnum][coachcount[teamnum]] = null;
+
+                    System.out.println(">" + delname
+                            + " 코치가 삭제되었습니다.");
+                    break;
+
+                case 4:
+                    // 선수 삭제
+                    break;
+
+                case 5:
+                    break;
+
+                default:
+                    System.out.println("잘못된 입력입니다.");
+                }
+
+                if(input == 5) {
+                    break;
+                }
+            }
+
+}

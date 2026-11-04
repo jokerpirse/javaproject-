@@ -2,242 +2,241 @@ package 장제하;
 
 import java.util.Scanner;
 
-class Player{
-	
-	private String PlayerName;	
-	private int Annual;
-
-	
-	public Player(String n, int A) { //클래스 밖에서도 값의 편집이 가능하게 하기 위해 생성자를 쓴다.
-		this.Annual=A; // public을 쓰지 않는 이유는 이 변수가 Player에 묶여 있는 것을 명시하기 위해서이다.
-		this.PlayerName=n;
-	}
-	
-}
-
-class Team {
-
-	private String name;// 필드=변수
-
-	String[] Coachs = new String[100];
-
-	int CoachCount = 0;
-	
-	int PlayerCount = 0;
-	String[] Players = new String[200];
-	int[] Annuals = new int[200];
+ class Player{
  	
-	public String getName() {
-		return name;
-	}
+ 	private String PlayerName;	
+ 	private int Annual;
 
-	public Team(String n) {
-		this.name = n;
-	}
+ 	
+ 	public Player(String n, int A) { //클래스 밖에서도 값의 편집이 가능하게 하기 위해 생성자를 쓴다.
+ 		this.Annual=A; // public을 쓰지 않는 이유는 이 변수가 Player에 묶여 있는 것을 명시하기 위해서이다.
+ 		this.PlayerName=n;
+ 	}
+ 	
+ }
 
-	public void EditTeam() {// 메서드=함수
-		System.out.println("<<" + name + "을 편집합니다.>>");
-		System.out.println("1. 코치 추가");
-		System.out.println("2. 선수 추가");
-		System.out.println("3. 코치 삭제");
-		System.out.println("4. 선수 삭제");
-		System.out.println("5. 나가기");
-		System.out.print("입력 : ");
+ class Team {
 
-		Scanner sc = new Scanner(System.in);
+ 	private String name;// 필드=변수
 
-		int input = sc.nextInt();
+ 	String[] Coachs = new String[100];
 
-		switch (input) {
-		case 1:
-			AddCoach();// 코치추가
-			break;
+ 	int CoachCount = 0;
+ 	
+ 	int PlayerCount = 0;
+ 	Player[] Players = new Player[200];
+ 	int[] Annuals = new int[200];
+  	
+ 	public String getName() {
+ 		return name;
+ 	}
 
-		case 2:
-			AddPlayer();// 선수추가
-			break;
+ 	public Team(String n) {
+ 		this.name = n;
+ 	}
 
-		case 3:
-			DeleteCoach();// 코치삭제
-			break;
+ 	public void EditTeam() {// 메서드=함수
+ 		System.out.println("<<" + name + "을 편집합니다.>>");
+ 		System.out.println("1. 코치 추가");
+ 		System.out.println("2. 선수 추가");
+ 		System.out.println("3. 코치 삭제");
+ 		System.out.println("4. 선수 삭제");
+ 		System.out.println("5. 나가기");
+ 		System.out.print("입력 : ");
 
-		case 4:
-			DeletePlayer();// 선수삭제
-			break;
+ 		Scanner sc = new Scanner(System.in);
 
-		case 5:// 나가기
-			return;
-		}
-	}
+ 		int input = sc.nextInt();
 
-	private void AddCoach() {
-		System.out.print("코치 이름을 추가해주세요 : ");
-		Scanner sc1 = new Scanner(System.in);
-		String CoachName = sc1.nextLine();
+ 		switch (input) {
+ 		case 1:
+ 			AddCoach();// 코치추가
+ 			break;
 
-		System.out.println(">" + CoachName + "가(이) 생성되었습니다.");
-		Coachs[CoachCount] = CoachName;
-		CoachCount++;
-	}
+ 		case 2:
+ 			AddPlayer();// 선수추가
+ 			break;
 
-	private void AddPlayer() {
-		System.out.println("<<<선수를 추가합니다.>>>");
-		
-		System.out.println("선수 이름 : ");
-		Scanner sc1 = new Scanner(System.in);
-		String PlayerName = sc1.nextLine();
-		Players[PlayerCount] = new Player(Name);
-		PlayerCount++;
-		
-		System.out.println("선수연봉(만원) : ");
-		Scanner sc2 = new Scanner(System.in);
-		int Annual = sc2.nextInt();
-		Annuals[PlayerCount] = Annual;
+ 		case 3:
+ 			DeleteCoach();// 코치삭제
+ 			break;
 
-		//teams[teamcount] = new Team(strname);
-	}
+ 		case 4:
+ 			DeletePlayer();// 선수삭제
+ 			break;
 
-	private void DeleteCoach() {
+ 		case 5:// 나가기
+ 			return;
+ 		}
+ 	}
 
-	}
+ 	private void AddCoach() {
+ 		System.out.print("코치 이름을 추가해주세요 : ");
+ 		Scanner sc1 = new Scanner(System.in);
+ 		String CoachName = sc1.nextLine();
 
-	private void DeletePlayer() {
+ 		System.out.println(">" + CoachName + "가(이) 생성되었습니다.");
+ 		Coachs[CoachCount] = CoachName;
+ 		CoachCount++;
+ 	}
 
-	}
-	
-	public void AllTeam() {
-		System.out.println(getName()+"의 코치");
-		
-		for (int h = 0; h < CoachCount; h++) {
-			System.out.println((h+1)+". "+Coachs[h]);	
-		}
-	}
+ 	private void AddPlayer() {
+ 		System.out.println("<<<선수를 추가합니다.>>>");
+ 		
+ 		System.out.println("선수 이름 : ");
+ 		Scanner sc1 = new Scanner(System.in);
+ 		String PlayerName = sc1.nextLine();
+ 		
+ 		PlayerCount++;
+ 		
+ 		System.out.println("선수연봉(만원) : ");
+ 		Scanner sc2 = new Scanner(System.in);
+ 		int Annual = sc2.nextInt();
+ 		
+ 		Players[PlayerCount] = new Player(PlayerName,Annual);
+ 		PlayerCount++;
+ 		//teams[teamcount] = new Team(strname);
+ 	}
 
-}
+ 	private void DeleteCoach() {
 
-public class soccer {
-	public static void main(String[] args) {
-		soccer team = new soccer();
+ 	}
 
-		team.start();
+ 	private void DeletePlayer() {
 
-	}
+ 	}
+ 	
+ 	public void AllTeam() {
+ 		System.out.println(getName()+"의 코치");
+ 		
+ 		for (int h = 0; h < CoachCount; h++) {
+ 			System.out.println((h+1)+". "+Coachs[h]);	
+ 		}
+ 	}
 
-	Team[] teams = new Team[100];
-	int teamcount = 0;
+ }
 
-void start() {
-		 //testcase();
-		do {
-			System.out.println("<축구선수 관리 프로그램>");
-			System.out.println("1. 구단 추가");
-			System.out.println("2. 구단 편집");
-			System.out.println("3. 구단 삭제");
-			System.out.println("4. 구단 보기");
-			System.out.println("5. 프로그램 종료");
+ public class soccer {
+ 	public static void main(String[] args) {
+ 		soccer team = new soccer();
 
-			System.out.print("입력 : ");
-			Scanner sc = new Scanner(System.in);
-			int input = sc.nextInt();
+ 		team.start();
 
-			switch (input) {
-			case 1:
-				AddTeam();
-				break;// return은 함수 자체를 나가게 하는 거라 여기서 return쓰면 start를 나가게 됨
-			case 2:
-				EditTeam();
-				break;
-			case 3:
-				DelTeam();
-				break;
-			case 4:
-				AllTeam();
-				break;
-			case 5:
-				return;
+ 	}
 
-			}
+ 	Team[] teams = new Team[100];
+ 	int teamcount = 0;
 
-			System.out.println("");
-			System.out.println("");
+ void start() {
+ 		 //testcase();
+ 		do {
+ 			System.out.println("<축구선수 관리 프로그램>");
+ 			System.out.println("1. 구단 추가");
+ 			System.out.println("2. 구단 편집");
+ 			System.out.println("3. 구단 삭제");
+ 			System.out.println("4. 구단 보기");
+ 			System.out.println("5. 프로그램 종료");
 
-		} while (true);
+ 			System.out.print("입력 : ");
+ 			Scanner sc = new Scanner(System.in);
+ 			int input = sc.nextInt();
 
-	}
+ 			switch (input) {
+ 			case 1:
+ 				AddTeam();
+ 				break;// return은 함수 자체를 나가게 하는 거라 여기서 return쓰면 start를 나가게 됨
+ 			case 2:
+ 				EditTeam();
+ 				break;
+ 			case 3:
+ 				DelTeam();
+ 				break;
+ 			case 4:
+ 				AllTeam();
+ 				break;
+ 			case 5:
+ 				return;
 
-	void testcase() {
-		teams[teamcount] = new Team("이샘"); // .name 필수???
-		teamcount++;
-		teams[teamcount] = new Team("즐거움"); // .name 필수???
-		teamcount++;
-		teams[teamcount] = new Team("슬픔"); // .name 필수???
-		teamcount++;
-		teams[teamcount] = new Team("화남"); // .name 필수???
-		teamcount++;
-	}
+ 			}
 
-	public void AddTeam() {
+ 			System.out.println("");
+ 			System.out.println("");
 
-		System.out.println("<<구단추가>>");
-		System.out.print("구단이름 입력 : ");
-		Scanner sc1 = new Scanner(System.in);
-		String strname = sc1.nextLine();
-		System.out.println(">구단이 생성되었습니다.");
+ 		} while (true);
 
-		teams[teamcount] = new Team(strname); // .name 필수???
+ 	}
 
-		teamcount++;
+ 	void testcase() {
+ 		teams[teamcount] = new Team("이샘"); // .name 필수???
+ 		teamcount++;
+ 		teams[teamcount] = new Team("즐거움"); // .name 필수???
+ 		teamcount++;
+ 		teams[teamcount] = new Team("슬픔"); // .name 필수???
+ 		teamcount++;
+ 		teams[teamcount] = new Team("화남"); // .name 필수???
+ 		teamcount++;
+ 	}
 
-	}
+ 	public void AddTeam() {
 
-	public void EditTeam() {
-		System.out.println("<<구단편집>>");
+ 		System.out.println("<<구단추가>>");
+ 		System.out.print("구단이름 입력 : ");
+ 		Scanner sc1 = new Scanner(System.in);
+ 		String strname = sc1.nextLine();
+ 		System.out.println(">구단이 생성되었습니다.");
 
-		for (int t = 0; t < teamcount; t++) {
-			System.out.print((t + 1) + ". ");
-			System.out.println(teams[t].getName());
+ 		teams[teamcount] = new Team(strname); // .name 필수???
 
-		}
+ 		teamcount++;
 
-		System.out.println((teamcount + 1) + ". 나가기");
+ 	}
 
-		System.out.print("편집할 구단 입력 : ");
+ 	public void EditTeam() {
+ 		System.out.println("<<구단편집>>");
 
-		Scanner sc2 = new Scanner(System.in);
-		int teamnum = sc2.nextInt() - 1;
+ 		for (int t = 0; t < teamcount; t++) {
+ 			System.out.print((t + 1) + ". ");
+ 			System.out.println(teams[t].getName());
 
-		if (teamnum == teamcount)
-			return;
-		teams[teamnum].EditTeam();
+ 		}
 
-	}
+ 		System.out.println((teamcount + 1) + ". 나가기");
 
-	public void DelTeam() {
+ 		System.out.print("편집할 구단 입력 : ");
 
-	}
+ 		Scanner sc2 = new Scanner(System.in);
+ 		int teamnum = sc2.nextInt() - 1;
 
-	public void AllTeam() {
-		System.out.println("<<구단보기>>");
+ 		if (teamnum == teamcount)
+ 			return;
+ 		teams[teamnum].EditTeam();
 
-		for (int t = 0; t < teamcount; t++) {
-			System.out.print((t + 1) + ". ");
-			System.out.println(teams[t].getName());
+ 	}
 
-		}
+ 	public void DelTeam() {
 
-		System.out.println((teamcount + 1) + ". 나가기");
+ 	}
 
-		System.out.print("정보를 확인할 구단의 번호를 입력해주세요 : ");
-		
-		Scanner sc2 = new Scanner(System.in);
-		int teamnum = sc2.nextInt() - 1;
+ 	public void AllTeam() {
+ 		System.out.println("<<구단보기>>");
 
-		if (teamnum == teamcount)
-			return;
-		teams[teamnum].AllTeam();
-		
+ 		for (int t = 0; t < teamcount; t++) {
+ 			System.out.print((t + 1) + ". ");
+ 			System.out.println(teams[t].getName());
 
+ 		}
 
-	}
+ 		System.out.println((teamcount + 1) + ". 나가기");
 
-}
+ 		System.out.print("정보를 확인할 구단의 번호를 입력해주세요 : ");
+ 		
+ 		Scanner sc2 = new Scanner(System.in);
+ 		int teamnum = sc2.nextInt() - 1;
+
+ 		if (teamnum == teamcount)
+ 			return;
+ 		teams[teamnum].AllTeam();
+
+ 	}
+
+ }

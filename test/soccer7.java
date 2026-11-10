@@ -125,7 +125,7 @@ class Team {
         Coachs[h] = Coachs[h + 1];
     }
 
-    Coachs[CoachCount - 1] = null;
+ 
 
 	}
 

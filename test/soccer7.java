@@ -19,6 +19,11 @@ class Player{
 		return N;
 	}
 	
+	public void delete(){
+		System.out.println(PlayerName+"삭제중");
+		PlayerName=null;
+	}
+	
 }
 
 class Team {
@@ -102,7 +107,7 @@ class Team {
 	}
 
 	private void DeleteCoach() {
-	    System.out.println("삭제할 코치를 입력해주십시오");
+	System.out.println("삭제할 코치를 입력해주십시오");
 
     System.out.println(getName()+"의 코치");
 
@@ -112,20 +117,16 @@ class Team {
 
     System.out.println("삭제할 코치 번호 : ");
     Scanner sc1 = new Scanner(System.in);
-    String DeleteCoach = sc1.nextLine();
+    int DeleteCoach = sc1.nextInt();
 
-    int DeleteNum = Integer.parseInt(DeleteCoach) - 1;
+    int DeleteNum = DeleteCoach - 1;
 
-    if (DeleteNum < 0 || DeleteNum >= CoachCount) {
-        System.out.println("잘못된 번호입니다.");
-        return;
-    }
-
-    for (int h = DeleteNum; h < CoachCount - 1; h++) {
+    CoachCount--;
+    for (int h = DeleteNum; h < CoachCount; h++) {
         Coachs[h] = Coachs[h + 1];
     }
 
- 
+    	Coachs[CoachCount]=null;
 
 	}
 
@@ -138,13 +139,23 @@ class Team {
 			System.out.println((p+1)+". "+Players[p].정보보기());	
 		}
 		
-		System.out.println("삭제할 선수 번호 : ");
+		System.out.print("삭제할 선수의 번호를 입력해주세요 : ");
 		Scanner sc1 = new Scanner(System.in);
-		String PlayerName = sc1.nextLine();
+		int DeletePlayer = sc1.nextInt();
 
+		int DeleteNum = DeletePlayer-1;
 
-	}
+	    PlayerCount--;
+	    Players[DeleteNum].delete();
+	    
+	    for (int h = DeleteNum; h < PlayerCount; h++) {
+	        Players[h] = Players[h +1];
+	    }
+	    	Players[PlayerCount]=null;
+		}
 	
+	
+
 	public void AllTeam() {
 		System.out.println(getName()+"의 코치");
 		
@@ -283,7 +294,29 @@ void start() {
 	}
 
 	public void DelTeam() {
+		System.out.println("<<구단삭제>>");
 
+		for (int t = 0; t < teamcount; t++) {
+			System.out.print((t + 1) + ". ");
+			System.out.println(teams[t].getName());
+
+		}
+
+		System.out.println((teamcount + 1) + ". 나가기");
+
+		System.out.print("삭제할 구단의 번호를 입력해주세요 : ");
+		
+		Scanner sc2 = new Scanner(System.in);
+		int teamnum = sc2.nextInt() - 1;
+		
+		int DeleteNum = teamnum - 1;
+
+	    CoachCount--;
+	    for (int h = DeleteNum; h < CoachCount; h++) {
+	        Coachs[h] = Coachs[h + 1];
+	    }
+
+	    	Coachs[CoachCount]=null;
 	}
 
 	public void AllTeam() {

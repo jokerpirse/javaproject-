@@ -1,0 +1,197 @@
+package 장제하;
+
+import java.util.Scanner;
+
+public class Team {
+
+	//여기서
+	private String name;// 필드=변수
+
+	String[] Coachs = new String[100];
+
+	int CoachCount = 0;
+	
+	int PlayerCount = 0;
+	Player[] Players = new Player[200];
+ 	//여기까지 모든 걸 날려야 해
+	
+	public String getName() {
+		return name;
+	}
+
+	public Team(String n) {
+		this.name = n;
+	}
+
+	public void EditTeam() {// 메서드=함수
+		System.out.println("<<" + name + "을 편집합니다.>>");
+		System.out.println("1. 코치 추가");
+		System.out.println("2. 선수 추가");
+		System.out.println("3. 코치 삭제");
+		System.out.println("4. 선수 삭제");
+		System.out.println("5. 나가기");
+		System.out.print("입력 : ");
+
+		Scanner sc = new Scanner(System.in);
+
+		int input = sc.nextInt();
+
+		switch (input) {
+		case 1:
+			AddCoach();// 코치추가
+			break;
+
+		case 2:
+			AddPlayer();// 선수추가
+			break;
+
+		case 3:
+			DeleteCoach();// 코치삭제
+			break;
+
+		case 4:
+			DeletePlayer();// 선수삭제
+			break;
+
+		case 5:// 나가기
+			return;
+		}
+	}
+
+	private void AddCoach() {
+		System.out.print("코치 이름을 추가해주세요 : ");
+		Scanner sc1 = new Scanner(System.in);
+		String CoachName = sc1.nextLine();
+
+		System.out.println(">" + CoachName + "가(이) 생성되었습니다.");
+		Coachs[CoachCount] = CoachName;
+		CoachCount++;
+	}
+
+	private void AddPlayer() {
+		System.out.println("<<<선수를 추가합니다.>>>");
+		
+		System.out.println("선수 이름 : ");
+		Scanner sc1 = new Scanner(System.in);
+		String PlayerName = sc1.nextLine();
+		
+		System.out.println("선수연봉(만원) : ");
+		Scanner sc2 = new Scanner(System.in);
+		int Annual = sc2.nextInt();
+		
+		Players[PlayerCount] = new Player(PlayerName,Annual);
+		PlayerCount++;
+		//teams[teamcount] = new Team(strname);
+	}
+
+	private void DeleteCoach() {
+	System.out.println("삭제할 코치를 입력해주십시오");
+
+    System.out.println(getName()+"의 코치");
+
+    for (int h = 0; h < CoachCount; h++) {
+        System.out.println((h+1)+". "+Coachs[h]);
+    }
+
+    System.out.print("삭제할 코치 번호 : ");
+    Scanner sc1 = new Scanner(System.in);
+    int DeleteCoach = sc1.nextInt();
+
+    int DeleteNum = DeleteCoach - 1;
+    
+    if (DeleteNum < 0 || DeleteNum >= CoachCount) {
+        System.out.println("잘못된 코치 번호입니다.");
+        return;
+    }
+    
+    CoachCount--;
+    for (int h = DeleteNum; h < CoachCount; h++) {
+        Coachs[h] = Coachs[h + 1];
+    }
+
+    	Coachs[CoachCount]=null;
+
+	}
+
+	private void DeletePlayer() {
+		System.out.println("삭제할 선수를 입력해주십시오");
+		
+		System.out.println(getName()+"의 선수");
+		
+		for (int p= 0; p < PlayerCount; p++) {
+			System.out.println((p+1)+". "+Players[p].정보보기());	
+		}
+		
+		System.out.print("삭제할 선수의 번호를 입력해주세요 : ");
+		Scanner sc1 = new Scanner(System.in);
+		int DeletePlayer = sc1.nextInt();
+
+		int DeleteNum = DeletePlayer-1;
+
+	    PlayerCount--;
+	    Players[DeleteNum].delete();
+	    
+	    for (int h = DeleteNum; h < PlayerCount; h++) {
+	        Players[h] = Players[h +1];
+	    }
+	    	Players[PlayerCount]=null;
+		}
+	
+	
+
+	public void AllTeam() {
+		System.out.println(getName()+"의 코치");
+		
+		for (int h = 0; h < CoachCount; h++) {
+			System.out.println((h+1)+". "+Coachs[h]);	
+		}
+		
+		
+		System.out.println(getName()+"의 선수");
+		
+		for (int p= 0; p < PlayerCount; p++) {
+			System.out.println((p+1)+". "+Players[p].정보보기());	
+		}
+		
+	
+	}
+
+	public void testcase2() {
+
+	    Coachs[CoachCount] = "이샘코치";
+	    CoachCount++;
+
+	    Coachs[CoachCount] = "코딩코치";
+	    CoachCount++;
+
+	    Coachs[CoachCount] = "자바코치";
+	    CoachCount++;
+
+	    Players[PlayerCount] = new Player("이샘선수 1", 10000);
+	    PlayerCount++;
+
+	    Players[PlayerCount] = new Player("이샘선수 2", 20000);
+	    PlayerCount++;
+
+	    Players[PlayerCount] = new Player("코딩선수 1", 10000);
+	    PlayerCount++;
+
+	    Players[PlayerCount] = new Player("코딩선수 2", 20000);
+	    PlayerCount++;
+	}
+
+	public void delete() {
+		// TODO Auto-generated method stub
+		for (int a = CoachCount-1 ; a>=0 ; a--) { //이거 -1왜 들어가는지 다시보기
+			Coachs[a]=null;
+		}
+		for (int s = PlayerCount-1 ; s>=0 ; s--) {
+			Players[s].delete();
+			Players[s]=null;
+		}
+		Coachs=null;
+		Players=null;
+	    name = null;
+	}
+
+}

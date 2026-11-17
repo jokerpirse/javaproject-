@@ -1,0 +1,23 @@
+package 장제하;
+
+public class Player {
+	
+	private String PlayerName;	
+	private int Annual;
+
+	
+	public Player(String n, int A) { //클래스 밖에서도 값의 편집이 가능하게 하기 위해 생성자를 쓴다.
+		this.Annual=A; // public을 쓰지 않는 이유는 이 변수가 Player에 묶여 있는 것을 명시하기 위해서이다.
+		this.PlayerName=n;
+	}
+	
+	public String 정보보기() {
+		String N = "선수 이름 : " + this.PlayerName + "\n" + "연봉 : "+ this.Annual;
+		
+		return N;
+	}
+	
+	public void delete(){
+		PlayerName=null;
+	}
+}

@@ -1,5 +1,6 @@
 package lagacy;
 
+
 public class p264_ClockTest {
 	public static void main (String[] args) {
 		p263_Clock[] clocks = new p263_Clock[3];
@@ -14,9 +15,16 @@ public class p264_ClockTest {
 		//
 		
 		int end=0;
-		//for (int num : Clock) end +=num;
-		System.out.println(Clock.getLocation() + " : " + Clock.getHours() + "시 " + Clock.getMinutes() + "분 " + Clock.getSeconds() + "초");
-		
+
+		for (p263_Clock clock : clocks) 
+		{
+			System.out.println(clock.getLocation() + " : " + clock.getHours() + "시 " + clock.getMinutes() + "분 " + clock.getSeconds() + "초");
+				
+		}
+//		for (int num = 0 ; num<3 ; num++)	
+//		{
+//		System.out.println(clocks[num].getLocation() + " : " + clocks[num].getHours() + "시 " + clocks[num].getMinutes() + "분 " + clocks[num].getSeconds() + "초");
+//		}
 		
 //		System.out.println(korClock.getLocation() + " : " + korClock.getHours() + "시 " + korClock.getMinutes() + "분 " + korClock.getSeconds() + "초");
 //		System.out.println(romeClock.getLocation() + " : " + romeClock.getHours() + "시 " + romeClock.getMinutes() + "분 " + romeClock.getSeconds() + "초");

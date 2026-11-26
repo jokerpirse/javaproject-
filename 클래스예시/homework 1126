@@ -1,0 +1,53 @@
+package 휴학자바공부;
+
+public class desk {
+	private int 운송시필요인원;
+	private int 크기;
+	
+	public void 콘센트장착하기()
+	{
+		
+	}
+	
+	public void 파손용품폐기()
+	{
+		
+	}
+}
+
+package 휴학자바공부;
+
+public class chair {
+	private String 상표;
+	private int 다리개수;
+	
+	public void 책상과분리하기()
+	{
+		
+	}
+	
+	public void 필요개수계산()
+	{
+		
+	}
+}
+
+package 휴학자바공부;
+
+public class classroom {
+	
+	private String 과목명;
+	private int 층수;
+	
+	public void 교수수업시간표작성()
+	{
+		
+	}
+	
+	public void 사용예약하기()
+	{
+		
+	}
+}
+
+

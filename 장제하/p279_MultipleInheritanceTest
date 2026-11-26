@@ -1,0 +1,25 @@
+package 장제하;
+
+public class p279_MultipleInheritanceTest {
+	public static void main (String[] args) {
+		
+		p276_Car [] p276_cars = new p276_Car[3];
+		
+		p276_cars[0] = new p276__PassengerCar();
+		p276_cars[1] = new p277_Truck(500);
+		p276_cars[2] = new P278_Pickup(4, 2000, 10000);
+		
+		for (int i = 0; i < 3; i++) {
+			p276_cars[i].showInfo();
+		}
+	}
+}
+
+interface p276_Car{
+	public void showInfo();
+}
+
+class p276_PassengerCar implements p276_Car{
+	private int seats;//정원
+	public p276_PassengerCar() {seats =2;}
+}
